@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:base_project/app/bloc/app_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -17,10 +18,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final appRouter = getIt<AppRouter>();
+  final appBloc = AppBloc();
   @override
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
+    appBloc.add(const AppEvent.initiated());
   }
 
   @override
@@ -33,6 +36,7 @@ class _MyAppState extends State<MyApp> {
       // routerConfig: appRouter.config(),
       routerDelegate: AutoRouterDelegate(
         appRouter,
+        initialRoutes: _mapRouteToPageRouteInfo(true),
         navigatorObservers: () => [RouteObserver()],
       ),
       routeInformationParser: appRouter.defaultRouteParser(),
@@ -44,5 +48,10 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
     );
+  }
+
+  List<PageRouteInfo> _mapRouteToPageRouteInfo(bool isAuthed) {
+    return [const LoginRoute()];
+    // return isAuthed ? const [MainRoute()] : const [LoginRoute()];
   }
 }

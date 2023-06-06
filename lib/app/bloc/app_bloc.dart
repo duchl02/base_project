@@ -8,9 +8,25 @@ part 'app_state.dart';
 
 @LazySingleton()
 class AppBloc extends Bloc<AppEvent, AppState> {
-  AppBloc() : super(_Initial()) {
-    on<AppEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+  AppBloc() : super(const AppState()) {
+    on<AppThemeChanged>(_onAppThemeChanged);
+    on<AppInitiated>(_onAppInitiated);
+  }
+
+  Future<void> _onAppThemeChanged(
+    AppThemeChanged event,
+    Emitter<AppState> emit,
+  ) async {
+    emit(state.copyWith(isDarkTheme: event.isDarkTheme));
+  }
+
+  Future<void> _onAppInitiated(
+    AppInitiated event,
+    Emitter<AppState> emit,
+  ) async {
+    emit(state.copyWith(
+      isDarkTheme: false,
+      isLoggedIn: false,
+    ));
   }
 }

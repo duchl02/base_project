@@ -21,6 +21,8 @@ dependencies:
   get_it: ^7.2.0
   injectable_generator: ^2.1.4
   auto_route: ^7.4.0
+  flutter_dotenv: ^5.1.0
+  flutter_gen_runner: ^5.3.1
   
 
 dev_dependencies:
@@ -35,8 +37,24 @@ dev_dependencies:
   #  export PATH=/Users/ducnguyenvan/Downloads/SDK/flutter/bin:$PATH
 
 
+flutter_gen:
+  output: lib/resource/generated
+  line_lenght: 160
+  null_safety: true
+
+  integrations:
+    flutter_svg: true
+    # flare_flutter: true
+
+  assets:
+    enabled: true
+
+  fonts:
+    enabled: true
+
 flutter:
   uses-material-design: true
   # generate: false
   assets:
     - assets/images/
+    - assets/env/
