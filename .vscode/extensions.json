@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dart-code.flutter",
+    "felixangelov.bloc",
+    "dart-code.dart-code",
+    "usernamehw.errorlens",
+    "donjayamanne.githistory",
+    "mhutchie.git-graph"
+  ]
+}
