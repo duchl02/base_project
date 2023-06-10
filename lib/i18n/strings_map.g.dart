@@ -7,7 +7,7 @@ extension on _StringsVi {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'core.home': return 'Flutter Init';
-			case 'core.count': return ({required Object count}) => 'Bạn đã bấm ${count}';
+			case 'core.count': return ({required Object count}) => 'Bạn đã bấm $count';
 			default: return null;
 		}
 	}

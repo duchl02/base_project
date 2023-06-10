@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'app_bloc.freezed.dart';
 part 'app_event.dart';
 part 'app_state.dart';
 
-@LazySingleton()
+@Singleton()
 class AppBloc extends Bloc<AppEvent, AppState> {
   AppBloc() : super(const AppState()) {
     on<AppThemeChanged>(_onAppThemeChanged);

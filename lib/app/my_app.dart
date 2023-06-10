@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:base_project/app/bloc/app_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:base_project/i18n/strings.g.dart';
@@ -28,25 +29,32 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: context.t.core.home,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // routerConfig: appRouter.config(),
-      routerDelegate: AutoRouterDelegate(
-        appRouter,
-        initialRoutes: _mapRouteToPageRouteInfo(true),
-        navigatorObservers: () => [RouteObserver()],
-      ),
-      routeInformationParser: appRouter.defaultRouteParser(),
-      locale: TranslationProvider.of(context).flutterLocale,
-      supportedLocales: AppLocaleUtils.supportedLocales,
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => appBloc,
+        ),
       ],
+      child: MaterialApp.router(
+        title: context.t.core.home,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        // routerConfig: appRouter.config(),
+        routerDelegate: AutoRouterDelegate(
+          appRouter,
+          initialRoutes: _mapRouteToPageRouteInfo(true),
+          navigatorObservers: () => [RouteObserver()],
+        ),
+        routeInformationParser: appRouter.defaultRouteParser(),
+        locale: TranslationProvider.of(context).flutterLocale,
+        supportedLocales: AppLocaleUtils.supportedLocales,
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+      ),
     );
   }
 
