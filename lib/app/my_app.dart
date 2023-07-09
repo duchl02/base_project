@@ -1,14 +1,13 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:base_project/app/bloc/app_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'package:base_project/i18n/strings.g.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import '../di/di.dart';
+import '../i18n/strings.g.dart';
+import '../routes/app_routes_observers.dart';
 import '../routes/routes.dart';
+import 'bloc/app_bloc.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -40,13 +39,9 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        // routerConfig: appRouter.config(),
-        routerDelegate: AutoRouterDelegate(
-          appRouter,
-          initialRoutes: _mapRouteToPageRouteInfo(true),
-          navigatorObservers: () => [RouteObserver()],
+        routerConfig: appRouter.config(
+          navigatorObservers: () => [AppRouteObserver()],
         ),
-        routeInformationParser: appRouter.defaultRouteParser(),
         locale: TranslationProvider.of(context).flutterLocale,
         supportedLocales: AppLocaleUtils.supportedLocales,
         localizationsDelegates: const [
@@ -56,10 +51,5 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
     );
-  }
-
-  List<PageRouteInfo> _mapRouteToPageRouteInfo(bool isAuthed) {
-    return [const LoginRoute()];
-    // return isAuthed ? const [MainRoute()] : const [LoginRoute()];
   }
 }

@@ -7,27 +7,35 @@
 // ignore_for_file: type=lint
 // coverage:ignore-file
 
-part of 'routes.dart';
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:auto_route/auto_route.dart' as _i3;
+import 'package:base_project/screen/Auth/login_screen.dart' as _i1;
+import 'package:base_project/screen/main/main_screen.dart' as _i2;
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
+abstract class $AppRouter extends _i3.RootStackRouter {
+  $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, PageFactory> pagesMap = {
+  final Map<String, _i3.PageFactory> pagesMap = {
     LoginRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
+      return _i3.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const LoginScreen(),
+        child: const _i1.LoginScreen(),
       );
-    }
+    },
+    MainRoute.name: (routeData) {
+      return _i3.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i2.MainScreen(),
+      );
+    },
   };
 }
 
 /// generated route for
-/// [LoginScreen]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute({List<PageRouteInfo>? children})
+/// [_i1.LoginScreen]
+class LoginRoute extends _i3.PageRouteInfo<void> {
+  const LoginRoute({List<_i3.PageRouteInfo>? children})
       : super(
           LoginRoute.name,
           initialChildren: children,
@@ -35,5 +43,19 @@ class LoginRoute extends PageRouteInfo<void> {
 
   static const String name = 'LoginRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const _i3.PageInfo<void> page = _i3.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.MainScreen]
+class MainRoute extends _i3.PageRouteInfo<void> {
+  const MainRoute({List<_i3.PageRouteInfo>? children})
+      : super(
+          MainRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MainRoute';
+
+  static const _i3.PageInfo<void> page = _i3.PageInfo<void>(name);
 }

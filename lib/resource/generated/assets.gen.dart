@@ -26,8 +26,7 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   /// File path: assets/images/among_icon.png
-  AssetGenImage get amongIcon =>
-      const AssetGenImage('assets/images/among_icon.png');
+  AssetGenImage get amongIcon => const AssetGenImage('assets/images/among_icon.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [amongIcon];
@@ -98,16 +97,7 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
-  }
+  ImageProvider provider() => AssetImage(_assetName);
 
   String get path => _assetName;
 
